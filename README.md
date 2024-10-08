@@ -58,6 +58,24 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+
+## Nest CLI
+
+```bash
+# Create new module
+$ nest g mo <name_module>
+
+# Create controller
+$ nest g co <name_module>
+
+# Create service
+$ nest g s <name_module>
+$ nest generate service <name_module> --no-spec
+```
+
+
+
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
