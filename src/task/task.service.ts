@@ -1,5 +1,6 @@
 import {HttpException, Injectable, NotFoundException} from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { PrismaService } from 'src/prisma.service';
 
 
 // interface para especificar tarea, se debe exportar
@@ -11,27 +12,31 @@ export interface Task {
 
 @Injectable()
 export class TaskService {
-    private tasks:Task[] = [];
+    constructor(private prisma: PrismaService) {}
+    
     getTasks(): any {
-        return  this.tasks //{"title":'Obteniendo tarea',"description":'Obteniendo descripción'}
+        return  this.prisma.task.findMany();
+         //{"title":'Obteniendo tarea',"description":'Obteniendo descripción'}
     }
 
-    getTask(id:number): any {
-        console.log("aqui",id);
-        const taskFound =  this.tasks.find(task => task.id === id);
-        if(!taskFound) {
-            return false
-        }
-        return  taskFound //{"title":'Obteniendo tarea',"description":'Obteniendo descripción'}
+    getTask(id:string): any {
+
+        
+        return this.prisma.task.findUnique({
+            where: {
+                id: String(id),
+            },
+        })
     }
 
 
     getAllTask(): any {
-        return  this.tasks //{"title":'Obteniendo tarea',"description":'Obteniendo descripción'}
+        return  "Obteniendo todas las tareas" //{"title":'Obteniendo tarea',"description":'Obteniendo descripción'}
     }
     updateTasks() {
         return {"tarea":'Actualizando  tarea'};
     }
+
 
     deleteTasks() {
         return {"tarea":'Eliminando tarea'};
@@ -42,8 +47,7 @@ export class TaskService {
     }
 
     createTasks(task:CreateTaskDto) {
-        this.tasks.push({
-            ...task,id: this.tasks.length + 1});
-        return task;
+        const gtask = this.prisma.task.create({data: task});
+        return gtask
     }
 }

@@ -7,7 +7,6 @@ import {
 
 
 export class CreateTaskDto {
-    id: number;
     @IsString()
     @IsNotEmpty()
     title: string;

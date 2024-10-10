@@ -71,6 +71,15 @@ $ nest g co <name_module>
 # Create service
 $ nest g s <name_module>
 $ nest generate service <name_module> --no-spec
+
+# Create pipe
+nest g pipe <name_module>/pipes/<nombre_pipes>
+
+# Create guard
+nest g guard <name_module>/guards/<nombre_guard>
+
+# Create Middleware
+nest g middleware <name_module>/<nombre_middleware>
 ```
 
 
