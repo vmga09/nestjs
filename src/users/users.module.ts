@@ -13,7 +13,7 @@ import { PrismaService } from 'src/prisma.service';
 export class UsersModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes(UsersController)
-    .apply(AuthMiddleware).forRoutes(UsersController);
+    //.apply(AuthMiddleware).forRoutes(UsersController);
   }
 
 }
